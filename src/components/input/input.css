@@ -1,0 +1,21 @@
+.input-container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content:space-between;
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid lightgray;
+    padding: 15px 15px 0px;
+    
+}
+
+input:focus{
+    border: 3px solid #555;
+    border-style: none;
+}
