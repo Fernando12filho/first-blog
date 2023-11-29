@@ -1,41 +1,57 @@
+import { useState } from "react";
 import "./App.css";
-import Button from "./components/button/Button";
-import Input from "./components/input/Input";
-
-
-
 
 function App() {
-  return (
-    <div className="App">
-      <form>
-        <div className="loginContainer">
-          <div className="login-structure">
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-            <h1>Welcome!</h1>
-            <Input
-              type="email"
-              name="email"
-              placeholder="example@gmail.com"
-              title="E-mail"
-            />
-            <Input
-              type="password"
-              name="password"
-              placeholder="12346578"
-              title="Password"
-            />
+	function onChangeEmail(evt: any) {
+		setEmail(evt.target.value);
+	}
 
-            <div className="buttonsAlignment">
-              <Button label = "Log In" />
-              <Button label = "Sign Up"/> 
-            </div>
+	function onChangePassword(evt: any) {
+		setPassword(evt.target.value);
+	}
 
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+	function login() {
+		console.log(email, password);
+	}
+
+	return (
+		<div className="App">
+			<div className="loginContainer">
+				<div className="login-structure">
+					<h1>Welcome!</h1>
+
+					<div className="input-container">
+						<label htmlFor={"email"}>E-mail</label>
+						<input
+							name="email"
+							id="email"
+							type={"text"}
+							onChange={onChangeEmail}
+							value={email}
+						/>
+					</div>
+
+					<div className="input-container">
+						<label htmlFor={"password"}>Password</label>
+						<input
+							name="password"
+							id="password"
+							type={"text"}
+							onChange={onChangePassword}
+							value={password}
+						/>
+					</div>
+
+					<div className="buttonsAlignment">
+						<button onClick={login}>Log In</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;

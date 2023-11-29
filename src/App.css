@@ -1,31 +1,64 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
-.loginContainer{
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+.loginContainer {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
 }
 
-.login-structure{
-  display: flex;
-  flex-direction: column;
-  border: 1px black solid;
-  height: 500px;
-  width: 500px;
-  padding: 100px;
-  justify-content: space-around;
+.login-structure {
+	display: flex;
+	flex-direction: column;
+	border: 1px black solid;
+	height: 500px;
+	width: 500px;
+	padding: 100px;
+	justify-content: space-around;
 }
 
-.buttonsAlignment{
-  display: flex;
-  width: 100%;
-  justify-content:flex-start;
+.buttonsAlignment {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
 }
-  
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	height: fit-content;
+	box-sizing: border-box;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+input {
+	border: none;
+	border-bottom: 2px solid lightgray;
+	padding: 15px 15px 0px;
+}
+
+input:focus {
+	border: 3px solid #555;
+	border-style: none;
+}
+
+button {
+	background-color: #04aa6d; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-right: 15px;
+	width: 180px;
+}
