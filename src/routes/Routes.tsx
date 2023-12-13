@@ -1,11 +1,6 @@
-import {
-	BrowserRouter,
-	Route,
-	RouterProvider,
-	createBrowserRouter,
-} from "react-router-dom";
-import Signup from "../components/signup/signup";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { LoginScreen } from "../screens/Login/LoginScreen";
+import { SignupScreen } from "../screens/Signup/SignupScreen";
 
 export function Routes() {
 	const router = createBrowserRouter([
@@ -15,7 +10,7 @@ export function Routes() {
 		},
 		{
 			path: "/signup",
-			element: <Signup />,
+			element: <SignupScreen />,
 		},
 	]);
 
