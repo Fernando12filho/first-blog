@@ -1,9 +1,16 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export function SignupScreen() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
+	function navigateBack(){
+		navigate("/");
+	}
+	
 	function onChangeEmail(evt: any) {
 		setEmail(evt.target.value);
 	}
@@ -64,6 +71,7 @@ export function SignupScreen() {
 
 						<div className="buttonsAlignment">
 							<button onClick={login}>Sign Up</button>
+							<button onClick = {navigateBack} > Back To Login </button>
 						</div>
 					</div>
 				</div>

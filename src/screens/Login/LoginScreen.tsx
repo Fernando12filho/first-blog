@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function LoginScreen() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
+
+	function navigateSignUp(){
+		navigate("/signup");
+	}
 
 	function onChangeEmail(evt: any) {
 		setEmail(evt.target.value);
@@ -53,8 +58,8 @@ export function LoginScreen() {
 
 					<div className="buttonsAlignment">
 						<button onClick={login}>Log In</button>
-						<button>
-							<Link to="/signup">Sign Up</Link>
+						<button onClick={navigateSignUp}>
+							Sign Up
 						</button>
 					</div>
 				</div>
