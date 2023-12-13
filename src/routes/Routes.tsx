@@ -2,14 +2,23 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { LoginScreen } from "../screens/Login/LoginScreen";
 import { SignupScreen } from "../screens/Signup/SignupScreen";
 
+
+export const ROUTES = {
+	LOGIN: "/", 
+	SIGNUP: "/signup"
+}
+
 export function Routes() {
+
+	
+
 	const router = createBrowserRouter([
 		{
-			path: "/",
+			path: ROUTES.LOGIN,
 			element: <LoginScreen />,
 		},
 		{
-			path: "/signup",
+			path: ROUTES.SIGNUP,
 			element: <SignupScreen />,
 		},
 	]);

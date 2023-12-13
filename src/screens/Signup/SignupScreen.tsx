@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/Routes";
 
 
 export function SignupScreen() {
@@ -8,7 +9,7 @@ export function SignupScreen() {
 	const navigate = useNavigate();
 
 	function navigateBack(){
-		navigate("/");
+		navigate(ROUTES.LOGIN);
 	}
 	
 	function onChangeEmail(evt: any) {
