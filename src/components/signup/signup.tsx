@@ -1,11 +1,7 @@
-import {Routes, Route} from "react-router-dom";
-import {Link} from "react-router-dom";
 import { useState } from "react";
-import "./App.css";
-import Signup from "./components/signup/signup";
 
-function App() {
-	const [email, setEmail] = useState("");
+function Signup(){
+    const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	function onChangeEmail(evt: any) {
@@ -30,13 +26,10 @@ function App() {
 		}
 	}
 
-
-
-	return (
-		<div className="App">
-			<Routes>
-				<Route path="/signup" element = {<Signup />} />
-			</Routes>
+    return(
+        
+        <div>
+            <div className="App">
 			<div className="loginContainer">
 				<div className="login-structure">
 					<h1>Welcome!</h1>
@@ -65,14 +58,27 @@ function App() {
 						/>
 					</div>
 
+                    <div className="input-container">
+						<label htmlFor={"password"}>Confirm Password</label>
+						<input
+							name="password"
+							id="password"
+							type={"password"}
+							onChange={onChangePassword}
+							value={password}
+					
+						/>
+					</div>
+
+
 					<div className="buttonsAlignment">
-						<button onClick={login}>Log In</button>
-						<button><Link to = "/signup">Sign Up</Link></button>
+						<button onClick={login}>Sign Up</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	);
+        </div>
+    )
 }
 
-export default App;
+export default Signup;
