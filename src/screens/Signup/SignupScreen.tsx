@@ -1,11 +1,57 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/Routes";
 
+export const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+export const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+export const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export function SignupScreen() {
+	const userRef = useRef();
+	const errRef = useRef();
+
 	const [email, setEmail] = useState("");
+	const [validEmail, setValidEmail] = useState(false);
+	const [emailFocus, setEmailFocus] = useState(false);
+
 	const [password, setPassword] = useState("");
+	const [validPwd, setValidPwd] = useState(false);
+	const [pwdFocus, setPwdFocus] = useState(false);
+
+	const [matchPassword, setMatchPassword] = useState("");
+	const [validMatch, setValidMatch] = useState(false);
+	const [matchFocus, setMatchFocus] = useState(false);
+
+	const [errMsg, setErrMsg] = useState('');
+	const [success, setSuccess] = useState('false');
+
+	//setting the focus when the component loads
+	useEffect(() => { 
+		//
+	}, []);
+
+	useEffect(() => { 
+		const result = USER_REGEX.test(email);
+		console.log(result);
+		console.log(email);
+		setValidEmail(result);
+	}, [email]);
+
+	useEffect(() => { 
+		const result = PWD_REGEX.test(password);
+		console.log(result);
+		console.log(password);
+		setValidPwd(result);
+		//Comparing password with matchPassword state, returns boolean
+
+		const match = password === matchPassword;
+		setValidMatch(match);
+	}, [password, matchPassword]); //Dependencies 
+
+	useEffect(() => {
+		setErrMsg('');
+	}, [email, password, matchPassword]);
+
 	const navigate = useNavigate();
 
 	function navigateBack(){
@@ -17,6 +63,10 @@ export function SignupScreen() {
 	}
 
 	function onChangePassword(evt: any) {
+		setPassword(evt.target.value);
+	}
+
+	function onChangeMatchPassword(evt: any) {
 		setPassword(evt.target.value);
 	}
 
@@ -60,13 +110,13 @@ export function SignupScreen() {
 						</div>
 
 						<div className="input-container">
-							<label htmlFor={"password"}>Confirm Password</label>
+							<label htmlFor={"matchPassword"}>Confirm Password</label>
 							<input
 								name="password"
-								id="password"
+								id="matchPassword"
 								type={"password"}
-								onChange={onChangePassword}
-								value={password}
+								onChange={onChangeMatchPassword}
+								value={matchPassword}
 							/>
 						</div>
 

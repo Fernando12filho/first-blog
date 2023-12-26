@@ -8,9 +8,8 @@ export const ROUTES = {
 	SIGNUP: "/signup"
 }
 
-export function Routes() {
 
-	
+export function Routes() {
 
 	const router = createBrowserRouter([
 		{
