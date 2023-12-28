@@ -1,72 +1,83 @@
 * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .loginContainer {
-	display: flex;
-	flex-direction: column;
-	width: auto;
-	height: 100vh;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-structure {
-	display: flex;
-	flex-direction: column;
-	border: 1px black solid;
-	height: 500px;
-	width: 500px;
-	padding: 100px;
-	align-items: center;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  min-height: 500px;
+  max-height: fit-content;
+  width: 500px;
+  padding: 100px;
 }
 
 .buttonsAlignment {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .input-container {
-	display: flex;
-	flex-direction: column;
-	width: fit-content;
-	height: fit-content;
-	box-sizing: border-box;
-	align-items: flex-start;
-	justify-content: space-between;
+  margin: 16px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: fit-content;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 input {
-	border: none;
-	border-bottom: 2px solid lightgray;
-	padding: 15px 15px 0px;
+  width: 300px;
+  border: none;
+  border-bottom: 2px solid lightgray;
+  padding: 15px 15px 0px;
 }
 
 input:focus {
-	border: 3px solid #555;
-	margin-top: 2px;
-	border-style: none;
-	outline: 2px solid #555;
+  border: 3px solid #555;
+  margin-top: 2px;
+  border-style: none;
+  outline: 2px solid #555;
+}
+
+.pwd-instructions {
+  max-width: 300px;
+  color: #666;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 button {
-	background-color: #04aa6d; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	width: 180px;
-	margin-top: 5px;
+  background-color: #04aa6d; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 180px;
+  margin-top: 5px;
 }
 
-button:hover{
-	cursor:pointer;
+button:hover {
+  cursor: pointer;
 }
