@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/Routes";
 
+
 //regex code to ensure email, user and password have a pre validation, before going to database
 export const EMAIL_REGEX = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
 export const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -128,11 +129,13 @@ export function SignupScreen() {
   function signUp() {
     if (!validEmail || !validMatch) {
       console.log("Complete all fields");
+	  
     } else {
+		navigate(ROUTES.HOME);
     }
   }
 
-  function enableInst() {}
+  
 
   return (
     <div>
@@ -161,7 +164,6 @@ export function SignupScreen() {
                 name="password"
                 id="password"
                 type={"password"}
-                onFocus={enableInst}
                 onBlur={checkPassword}
                 onChange={onChangePassword}
                 value={password}
