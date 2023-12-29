@@ -1,7 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/Routes";
-
+import {
+  Input,
+  Button,
+  ButtonGroup,
+  InputRightElement,
+  InputGroup,
+} from "@chakra-ui/react";
 
 //regex code to ensure email, user and password have a pre validation, before going to database
 export const EMAIL_REGEX = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
@@ -44,6 +50,9 @@ export function SignupScreen() {
   const [buttonDisable, setButton] = useState(true);
   //------------------------------------------------------
 
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+
   //setting the focus when the component loads, not in use
   useEffect(() => {}, []);
 
@@ -74,7 +83,7 @@ export function SignupScreen() {
     } else {
       setButton(true);
     }
-  }, [validEmail, validMatch]);
+  }, [validEmail, validMatch, validPwd]);
 
   //instantiating hook useNavigate
   const navigate = useNavigate();
@@ -99,7 +108,7 @@ export function SignupScreen() {
 
   //Functions that change labels according to input validation
   function checkEmail() {
-    if (validEmail || email == "") {
+    if (validEmail || email === "") {
       setEmailLabel("Email");
       return true;
     } else {
@@ -110,7 +119,7 @@ export function SignupScreen() {
   }
 
   function checkPassword() {
-    if (validPwd || password == "") {
+    if (validPwd || password === "") {
       setPasswordLabel("Password");
     } else {
       setPasswordLabel(" Password invalid");
@@ -118,7 +127,7 @@ export function SignupScreen() {
   }
 
   function checkMatch() {
-    if (validMatch || matchPassword == "") {
+    if (validMatch || matchPassword === "") {
       setMatchLabel("Confirm Password");
     } else {
       setMatchLabel("Passwords dont match");
@@ -129,13 +138,10 @@ export function SignupScreen() {
   function signUp() {
     if (!validEmail || !validMatch) {
       console.log("Complete all fields");
-	  
     } else {
-		navigate(ROUTES.HOME);
+      navigate(ROUTES.HOME);
     }
   }
-
-  
 
   return (
     <div>
@@ -148,7 +154,11 @@ export function SignupScreen() {
               <label htmlFor={"email"} ref={emailRef}>
                 {emailLabel}
               </label>
-              <input
+              <Input
+                placeholder="Basic usage"
+                width="300px"
+                variant="flushed"
+                color=""
                 name="email"
                 id="email"
                 type={"email"}
@@ -160,14 +170,24 @@ export function SignupScreen() {
 
             <div className="input-container">
               <label htmlFor={"password"}>{passwordLabel}</label>
-              <input
-                name="password"
-                id="password"
-                type={"password"}
-                onBlur={checkPassword}
-                onChange={onChangePassword}
-                value={password}
-              />
+
+              <InputGroup width="300px" variant="flushed">
+                <Input
+                  width="300px"
+                  variant="flushed"
+                  name="password"
+                  id="password"
+                  onBlur={checkPassword}
+                  onChange={onChangePassword}
+                  value={password}
+                  type={show ? 'text' : 'password'}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
 
               <div className="pwd-instructions">
                 <p>
@@ -179,7 +199,9 @@ export function SignupScreen() {
 
             <div className="input-container">
               <label htmlFor={"matchPassword"}>{matchLabel}</label>
-              <input
+              <Input
+                width="300px"
+                variant="flushed"
                 name="matchPassword"
                 id="matchPassword"
                 type={"password"}
@@ -190,7 +212,7 @@ export function SignupScreen() {
             </div>
 
             <div className="buttonsAlignment">
-              <button
+              <Button
                 onClick={signUp}
                 disabled={buttonDisable}
                 style={
@@ -198,8 +220,10 @@ export function SignupScreen() {
                 }
               >
                 Sign Up
-              </button>
-              <button onClick={navigateBack}> Back To Login </button>
+              </Button>
+              <Button onClick={navigateBack} backgroundColor="#D1FFBD">
+                Back To Login
+              </Button>
             </div>
           </div>
         </div>

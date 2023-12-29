@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/Routes";
+import {
+	Input,
+	Button,
+	ButtonGroup,
+	InputRightElement,
+	InputGroup,
+  } from "@chakra-ui/react";
 
 export function LoginScreen() {
 	const [email, setEmail] = useState("");
@@ -37,7 +44,9 @@ export function LoginScreen() {
 
 					<div className="input-container">
 						<label htmlFor={"email"}>E-mail</label>
-						<input
+						<Input
+							width="300px"
+							variant="flushed"
 							name="email"
 							id="email"
 							type={"email"}
@@ -48,7 +57,9 @@ export function LoginScreen() {
 
 					<div className="input-container">
 						<label htmlFor={"password"}>Password</label>
-						<input
+						<Input
+							width="300px"
+							variant="flushed"
 							name="password"
 							id="password"
 							type={"password"}
@@ -58,10 +69,10 @@ export function LoginScreen() {
 					</div>
 
 					<div className="buttonsAlignment">
-						<button onClick={login}>Log In</button>
-						<button onClick={navigateSignUp}>
+						<Button colorScheme="green" onClick={login} color="black">Log In</Button>
+						<Button onClick={navigateSignUp} backgroundColor="#D1FFBD" color="Black">
 							Sign Up
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>

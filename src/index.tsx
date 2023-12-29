@@ -1,15 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { ChakraProvider, extendBaseTheme, theme as chakraTheme, } from "@chakra-ui/react";
+
+const { Input, Button } = chakraTheme.components;
+
+const theme = extendBaseTheme({
+  components: {
+    Input,
+    Button,
+  }
+})
 
 const root = ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
+  <ChakraProvider theme={theme}>
+    <React.StrictMode>
+      <App/>
+    </React.StrictMode>
+  </ChakraProvider>
 );
