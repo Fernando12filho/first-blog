@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/Routes";
 import {
@@ -49,6 +49,7 @@ export function SignupScreen() {
   //Disabling and enabling button-------------------------
   const [buttonDisable, setButton] = useState(true);
   //------------------------------------------------------
+  const [loading, setLoading] = useState(false);
 
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -61,24 +62,42 @@ export function SignupScreen() {
     const result = EMAIL_REGEX.test(email);
     console.log(result);
     console.log(email);
-    setValidEmail(result);
+    if(result == true || email == "")
+    {
+      setValidEmail(true);
+    }
+    else{
+      setValidEmail(false);
+    }
   }, [email]);
 
   //Comparing password typed with regex code to check validation, and compares the two password entered
   useEffect(() => {
     const result = PWD_REGEX.test(password);
+    if(result == true || password == "")
+    {
+      setValidPwd(true);
+    }
+    else{
+      setValidPwd(false);
+    }
     console.log(result);
     console.log(password);
-    setValidPwd(result);
+    
+    
     //Comparing password with matchPassword state, returns boolean
-    const match = password === matchPassword;
-    console.log(match);
-    setValidMatch(match);
+    if(matchPassword == "" || password === matchPassword)
+    {
+      setValidMatch(true);
+    }
+    else{
+      setValidMatch(false);
+    }  
   }, [password, matchPassword]); //Dependencies
 
   //Disables or enables the button
   useEffect(() => {
-    if (validEmail && validMatch && validPwd) {
+    if (validEmail && validMatch && validPwd && email != "" && password != "" && matchPassword != "") {
       setButton(false);
     } else {
       setButton(true);
@@ -130,6 +149,7 @@ export function SignupScreen() {
     if (validMatch || matchPassword === "") {
       setMatchLabel("Confirm Password");
     } else {
+      
       setMatchLabel("Passwords dont match");
     }
   }
@@ -139,6 +159,7 @@ export function SignupScreen() {
     if (!validEmail || !validMatch) {
       console.log("Complete all fields");
     } else {
+      setLoading(true);
       navigate(ROUTES.HOME);
     }
   }
@@ -154,8 +175,9 @@ export function SignupScreen() {
               <label htmlFor={"email"} ref={emailRef}>
                 {emailLabel}
               </label>
-              <Input
-                placeholder="Basic usage"
+              {validEmail ? (
+                <Input
+                placeholder="example@gmail.com"
                 width="300px"
                 variant="flushed"
                 color=""
@@ -166,13 +188,31 @@ export function SignupScreen() {
                 onBlur={checkEmail}
                 value={email}
               />
+              ) : (
+                <Input
+                placeholder="Basic usage"
+                width="300px"
+                variant="flushed"
+                color=""
+                name="email"
+                id="email"
+                type={"email"}
+                onChange={onChangeEmail}
+                onBlur={checkEmail}
+                value={email}
+                isInvalid
+                errorBorderColor="red.300"
+              />
+              )}
+              
             </div>
 
             <div className="input-container">
               <label htmlFor={"password"}>{passwordLabel}</label>
 
               <InputGroup width="300px" variant="flushed">
-                <Input
+                {validPwd ? (
+                  <Input
                   width="300px"
                   variant="flushed"
                   name="password"
@@ -180,8 +220,23 @@ export function SignupScreen() {
                   onBlur={checkPassword}
                   onChange={onChangePassword}
                   value={password}
-                  type={show ? 'text' : 'password'}
+                  type={show ? "text" : "password"}
                 />
+                ) : (
+                  <Input
+                  width="300px"
+                  variant="flushed"
+                  name="password"
+                  id="password"
+                  onBlur={checkPassword}
+                  onChange={onChangePassword}
+                  value={password}
+                  type={show ? "text" : "password"}
+                  isInvalid
+                  errorBorderColor="red.300"
+                />
+                )}
+                
                 <InputRightElement width="4.5rem">
                   <Button h="1.75rem" size="sm" onClick={handleClick}>
                     {show ? "Hide" : "Show"}
@@ -199,16 +254,31 @@ export function SignupScreen() {
 
             <div className="input-container">
               <label htmlFor={"matchPassword"}>{matchLabel}</label>
-              <Input
-                width="300px"
-                variant="flushed"
-                name="matchPassword"
-                id="matchPassword"
-                type={"password"}
-                onChange={onChangeMatchPassword}
-                onBlur={checkMatch}
-                value={matchPassword}
-              />
+              {validMatch ? (
+                <Input
+                  width="300px"
+                  variant="flushed"
+                  name="matchPassword"
+                  id="matchPassword"
+                  type={"password"}
+                  onChange={onChangeMatchPassword}
+                  onBlur={checkMatch}
+                  value={matchPassword}                 
+                />
+              ) : (
+                <Input
+                  width="300px"
+                  variant="flushed"
+                  name="matchPassword"
+                  id="matchPassword"
+                  type={"password"}
+                  onChange={onChangeMatchPassword}
+                  onBlur={checkMatch} 
+                  value={matchPassword}
+                  isInvalid
+                  errorBorderColor="red.300"
+                />
+              )}
             </div>
 
             <div className="buttonsAlignment">
