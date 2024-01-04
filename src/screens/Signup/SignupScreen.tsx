@@ -64,7 +64,7 @@ export function SignupScreen() {
     console.log(email);
     if(result == true || email == "")
     {
-      setValidEmail(true);
+      setValidEmail(result || !email.length);
     }
     else{
       setValidEmail(false);
